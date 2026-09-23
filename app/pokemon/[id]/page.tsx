@@ -4,25 +4,25 @@ import type { Metadata } from "next";
 import { getPokemonDetails } from "@/lib/api/pokemon.detail";
 
 const typeStyles = [
-  "border-[var(--yellow)] bg-[var(--yellow)]/25",
-  "border-[#8ed9c4] bg-[#8ed9c4]/30",
-  "border-[#9dbcf4] bg-[#9dbcf4]/30",
+  "border-[var(--foreground)] bg-[var(--panel-alt)]",
+  "border-[var(--muted)] bg-[var(--panel-alt)]",
+  "border-[var(--blue)] bg-[var(--border)]",
 ];
 
 const statStyles = [
   "bg-[var(--red)]",
   "bg-[var(--blue)]",
-  "bg-[#e58b3a]",
-  "bg-[#8d6bd8]",
-  "bg-[#3eaa76]",
-  "bg-[#d85c91]",
+  "bg-[var(--muted)]",
+  "bg-[var(--ink-soft)]",
+  "bg-[var(--foreground)]",
+  "bg-[var(--yellow)]",
 ];
 
 const moveStyles = [
-  "bg-[var(--yellow)]/25",
-  "bg-[#8ed9c4]/30",
-  "bg-[#9dbcf4]/30",
-  "bg-[#f5a4b4]/35",
+  "bg-[var(--panel-alt)]",
+  "bg-[var(--border)]",
+  "bg-[var(--panel-alt)]",
+  "bg-[var(--border)]",
 ];
 
 function formatPokemonName(name: string) {

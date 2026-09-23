@@ -1,39 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fff7e8;
-  --foreground: #17233d;
-  --panel: #fffdf8;
-  --panel-alt: #f4efe4;
-  --border: rgba(23, 35, 61, 0.14);
-  --muted: #6f7890;
-  --nav-bg: #fffdf8;
-  --link: #17233d;
-  --link-hover: #ef3e4a;
-  --link-bg-hover: rgba(239, 62, 74, 0.1);
-  --red: #ef3e4a;
-  --yellow: #f7c843;
-  --blue: #3066be;
-  --ink-soft: #52607a;
+  --background: #f6f8fa;
+  --foreground: #3f4852;
+  --panel: #ffffff;
+  --panel-alt: #eef1f3;
+  --border: rgba(63, 72, 82, 0.16);
+  --muted: #7a858e;
+  --nav-bg: #ffffff;
+  --link: #3f4852;
+  --link-hover: #e85d32;
+  --link-bg-hover: rgba(53, 169, 216, 0.1);
+  --red: #ed6a38;
+  --yellow: #f2c94c;
+  --blue: #35a9d8;
+  --ink-soft: #5f6b74;
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #182541;
-    --foreground: #fff7e8;
-    --panel: #203153;
-    --panel-alt: #293a5d;
-    --border: rgba(255, 247, 232, 0.16);
-    --muted: #b8c2d7;
-    --nav-bg: #182541;
-    --link: #fff7e8;
-    --link-hover: #f7c843;
-    --link-bg-hover: rgba(247, 200, 67, 0.12);
-    --red: #ff6570;
-    --yellow: #f7c843;
-    --blue: #79a6f6;
-    --ink-soft: #d3dced;
+    --background: #242a2f;
+    --foreground: #f3f5f6;
+    --panel: #30383e;
+    --panel-alt: #3b454c;
+    --border: rgba(243, 245, 246, 0.18);
+    --muted: #b8c2c8;
+    --nav-bg: #2c3338;
+    --link: #f3f5f6;
+    --link-hover: #f2c94c;
+    --link-bg-hover: rgba(243, 245, 246, 0.08);
+    --red: #ff8a5c;
+    --yellow: #f2c94c;
+    --blue: #61c5ed;
+    --ink-soft: #d3dade;
     color-scheme: dark;
   }
 }
@@ -52,4 +52,7 @@ html {
 html,
 body {
   margin: 0;
+  background-color: var(--background);
+  background-image: repeating-linear-gradient(118deg, transparent 0 57px, rgba(63, 72, 82, 0.045) 57px 58px, transparent 58px 119px), repeating-linear-gradient(27deg, transparent 0 83px, rgba(63, 72, 82, 0.035) 83px 84px, transparent 84px 173px), linear-gradient(rgba(63, 72, 82, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(63, 72, 82, 0.03) 1px, transparent 1px);
+  background-size: auto, auto, 32px 32px, 32px 32px;
 }

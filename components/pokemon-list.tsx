@@ -7,24 +7,6 @@ import { getPokemonList } from "@/lib/api/pokemon.listing";
 import type { PokemonListItem } from "@/types/pokemon";
 
 const PAGE_SIZE = 24;
-const cardStyles = [
-  {
-    border: "border-t-[var(--yellow)]",
-    sprite: "bg-[linear-gradient(135deg,var(--yellow)_0_12%,transparent_12%_88%,var(--yellow)_88%)]",
-  },
-  {
-    border: "border-t-[#8ed9c4]",
-    sprite: "bg-[linear-gradient(135deg,#8ed9c4_0_12%,transparent_12%_88%,#8ed9c4_88%)]",
-  },
-  {
-    border: "border-t-[#9dbcf4]",
-    sprite: "bg-[linear-gradient(135deg,#9dbcf4_0_12%,transparent_12%_88%,#9dbcf4_88%)]",
-  },
-  {
-    border: "border-t-[#f5a4b4]",
-    sprite: "bg-[linear-gradient(135deg,#f5a4b4_0_12%,transparent_12%_88%,#f5a4b4_88%)]",
-  },
-];
 
 type PokemonListProps = {
   initialItems: PokemonListItem[];
@@ -66,10 +48,10 @@ export function PokemonList({ initialItems, initialCount }: PokemonListProps) {
 
   return (
     <div className="mx-auto w-full max-w-[1440px] space-y-8">
-      <section className="relative min-h-[270px] overflow-hidden rounded-3xl border-2 border-[var(--foreground)] bg-[var(--red)] text-[#fffdf8] shadow-[8px_8px_0_var(--foreground)] max-sm:shadow-[5px_5px_0_var(--foreground)]">
+      <section className="relative min-h-[270px] overflow-hidden rounded-3xl border-2 border-[var(--foreground)] bg-[var(--red)] text-[var(--panel)] shadow-[8px_8px_0_var(--foreground)] max-sm:shadow-[5px_5px_0_var(--foreground)]">
         <div className="absolute inset-0 bg-[repeating-linear-gradient(135deg,transparent_0_24px,rgba(255,255,255,0.08)_24px_26px)]" />
         <div className="relative z-10 max-w-[620px] p-8 sm:p-12 lg:p-16">
-          <h1 className="my-3 text-5xl font-black leading-[0.9] tracking-[-0.04em] text-[#fffdf8] sm:text-7xl lg:text-[6.6rem]">
+          <h1 className="my-3 text-5xl font-black leading-[0.9] tracking-[-0.04em] text-[var(--panel)] sm:text-7xl lg:text-[6.6rem]">
             Explore the wild.
           </h1>
           <p className="m-0 max-w-[390px] text-base leading-relaxed text-white/85">
@@ -117,44 +99,43 @@ export function PokemonList({ initialItems, initialCount }: PokemonListProps) {
       </div>
 
       {loading ? (
-        <div className="rounded-lg border-2 border-dashed border-[var(--border)] p-7 text-center text-[var(--muted)]" role="status">
-          Loading your next encounters...
+        <div className="flex min-h-40 items-center justify-center" role="status" aria-label="Loading Pokemon">
+          <Image
+            src="/images/pokemon-icon.svg"
+            alt=""
+            width={48}
+            height={48}
+            className="animate-spin grayscale opacity-60"
+          />
         </div>
       ) : filteredItems.length ? (
         <div className="grid grid-cols-2 gap-3 sm:gap-[18px] md:grid-cols-3 xl:grid-cols-4">
-          {filteredItems.map((pokemon, index) => {
+          {filteredItems.map((pokemon) => {
             const pokemonId = pokemon.url.split("/").filter(Boolean).pop() ?? "";
             const sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemonId}.png`;
-            const style = cardStyles[index % cardStyles.length];
 
             return (
-              <article
-                key={pokemon.name}
-                className={`group relative min-h-[225px] overflow-hidden rounded-lg border-2 border-t-8 ${style.border} border-[var(--foreground)] bg-[var(--panel)] p-3 shadow-[5px_5px_0_var(--border)] transition-transform duration-200 hover:-translate-y-1.5 hover:rotate-[-1deg] hover:shadow-[8px_10px_0_var(--foreground)] sm:min-h-[260px] sm:p-4`}
-              >
-                <div className="mt-1 flex items-center justify-between text-[0.72rem] font-extrabold tracking-[0.1em] text-[var(--muted)]">
-                  <span>#{pokemonId.padStart(3, "0")}</span>
-                  <span className="h-2 w-2 rounded-full bg-[var(--card-accent,var(--red))]" aria-hidden="true" />
-                </div>
-                <div className={`my-1 flex h-[115px] items-center justify-center sm:h-[145px] ${style.sprite}`}>
+              <article key={pokemon.name} className="group min-w-0">
+                <div className="flex aspect-square items-center justify-center bg-[var(--panel-alt)] p-4 transition-colors group-hover:bg-[var(--border)] sm:p-6">
                   <Image
                     src={sprite}
                     alt=""
                     width={150}
                     height={150}
-                    className="h-[115px] w-[115px] object-contain transition-transform duration-200 group-hover:-translate-y-1 group-hover:scale-105 sm:h-[145px] sm:w-[145px]"
+                    className="h-full w-full object-contain transition-transform duration-200 group-hover:scale-105"
                   />
                 </div>
-                <div className="flex items-end justify-between gap-2 max-sm:flex-col max-sm:items-start">
-                  <h2 className="m-0 text-[1.1rem] font-black capitalize text-[var(--foreground)]">
+                <p className="mt-2 text-xs font-bold tracking-wide text-[var(--muted)]">#{pokemonId.padStart(4, "0")}</p>
+                <div className="flex flex-col items-start gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
+                  <h2 className="m-0 min-w-0 break-words text-lg font-black capitalize text-[var(--foreground)] sm:text-2xl">
                     {pokemon.name}
                   </h2>
                   <Link
                     href={`/pokemon/${pokemonId}`}
                     aria-label={`View ${pokemon.name} details`}
-                    className="text-[0.72rem] font-black uppercase text-[var(--red)] no-underline hover:text-[var(--blue)]"
+                    className="shrink-0 text-xs font-extrabold uppercase text-[var(--red)] no-underline hover:text-[var(--blue)] sm:ml-auto"
                   >
-                    Inspect -&gt;
+                    View -&gt;
                   </Link>
                 </div>
               </article>
@@ -177,7 +158,7 @@ export function PokemonList({ initialItems, initialCount }: PokemonListProps) {
         >
           &lt;- Previous
         </button>
-        <span className="grid h-[42px] w-[42px] place-items-center rounded-full bg-[var(--blue)] font-black text-[#fffdf8]">
+        <span className="grid h-[42px] w-[42px] place-items-center rounded-full bg-[var(--blue)] font-black text-[var(--panel)]">
           {String(page).padStart(2, "0")}
         </span>
         <button
