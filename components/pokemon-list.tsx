@@ -48,17 +48,17 @@ export function PokemonList({ initialItems, initialCount }: PokemonListProps) {
 
   return (
     <div className="mx-auto w-full max-w-[1440px] space-y-8">
-      <section className="relative min-h-[270px] overflow-hidden rounded-3xl border-2 border-[var(--foreground)] bg-[var(--red)] text-[var(--panel)] shadow-[8px_8px_0_var(--foreground)] max-sm:shadow-[5px_5px_0_var(--foreground)]">
-        <div className="absolute inset-0 bg-[repeating-linear-gradient(135deg,transparent_0_24px,rgba(255,255,255,0.08)_24px_26px)]" />
+      <section className="relative min-h-[270px] overflow-hidden rounded-3xl border-2 border-[var(--foreground)] bg-[var(--panel-alt)] text-[var(--foreground)] shadow-[8px_8px_0_var(--foreground)] max-sm:shadow-[5px_5px_0_var(--foreground)]">
+        <div className="absolute inset-0 bg-[repeating-linear-gradient(135deg,transparent_0_24px,rgba(63,72,82,0.06)_24px_26px)]" />
         <div className="relative z-10 max-w-[620px] p-8 sm:p-12 lg:p-16">
-          <h1 className="my-3 text-5xl font-black leading-[0.9] tracking-[-0.04em] text-[var(--panel)] sm:text-7xl lg:text-[6.6rem]">
+          <h1 className="my-3 text-5xl font-black leading-[0.9] tracking-[-0.04em] text-[var(--blue)] sm:text-7xl lg:text-[6.6rem]">
             Explore the wild.
           </h1>
-          <p className="m-0 max-w-[390px] text-base leading-relaxed text-white/85">
+          <p className="m-0 max-w-[390px] text-base leading-relaxed text-[var(--red)]">
             A bright little index of creatures, moves, and endless adventure.
           </p>
         </div>
-        <div className="absolute -bottom-[72px] right-[9%] w-[270px] rotate-12 max-sm:-right-[100px] max-sm:opacity-70">
+        <div className="absolute -bottom-[72px] right-[9%] w-[270px] max-sm:-right-[100px]">
           <Image src="/images/pokemon-icon.svg" alt="" width={270} height={270} />
         </div>
       </section>
