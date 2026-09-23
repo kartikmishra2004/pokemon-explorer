@@ -24,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[var(--background)] text-[var(--foreground)]">
+      <body className="min-h-full bg-[var(--background)] font-sans text-[var(--foreground)]">
         <div className="min-h-screen w-full">
           <Navbar />
           <main className="min-h-[calc(100vh-4rem)] p-6">{children}</main>
