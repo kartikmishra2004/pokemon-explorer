@@ -18,8 +18,7 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
+:root[data-theme="dark"] {
     --background: #242a2f;
     --foreground: #f3f5f6;
     --panel: #30383e;
@@ -35,7 +34,6 @@
     --blue: #61c5ed;
     --ink-soft: #d3dade;
     color-scheme: dark;
-  }
 }
 
 @theme inline {
@@ -53,6 +51,7 @@ html,
 body {
   margin: 0;
   background-color: var(--background);
-  background-image: repeating-linear-gradient(118deg, transparent 0 57px, rgba(63, 72, 82, 0.045) 57px 58px, transparent 58px 119px), repeating-linear-gradient(27deg, transparent 0 83px, rgba(63, 72, 82, 0.035) 83px 84px, transparent 84px 173px), linear-gradient(rgba(63, 72, 82, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(63, 72, 82, 0.03) 1px, transparent 1px);
-  background-size: auto, auto, 32px 32px, 32px 32px;
+  background-image: linear-gradient(rgba(63, 72, 82, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(63, 72, 82, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-attachment: fixed;
 }

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { ScrollToTop } from "@/components/scroll-to-top";
 import { getPokemonDetails } from "@/lib/api/pokemon.detail";
 
 const typeStyles = [
@@ -82,6 +83,7 @@ export default async function PokemonPage({
 
   return (
     <div className="mx-auto w-full max-w-[1180px] text-[var(--foreground)]">
+      <ScrollToTop />
       <nav className="-mx-6 flex items-center justify-between border-y border-[var(--border)] bg-[var(--panel-alt)] px-6 py-2 text-xs font-bold uppercase tracking-wide sm:mx-0 sm:px-4">
         <Link href="/" className="text-[var(--foreground)] no-underline hover:text-[var(--red)]">
           &lt; Back to list
