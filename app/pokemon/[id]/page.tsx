@@ -3,28 +3,6 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getPokemonDetails } from "@/lib/api/pokemon.detail";
 
-const typeStyles = [
-  "border-[var(--foreground)] bg-[var(--panel-alt)]",
-  "border-[var(--muted)] bg-[var(--panel-alt)]",
-  "border-[var(--blue)] bg-[var(--border)]",
-];
-
-const statStyles = [
-  "bg-[var(--red)]",
-  "bg-[var(--blue)]",
-  "bg-[var(--muted)]",
-  "bg-[var(--ink-soft)]",
-  "bg-[var(--foreground)]",
-  "bg-[var(--yellow)]",
-];
-
-const moveStyles = [
-  "bg-[var(--panel-alt)]",
-  "bg-[var(--border)]",
-  "bg-[var(--panel-alt)]",
-  "bg-[var(--border)]",
-];
-
 export async function generateMetadata({
   params,
 }: {
@@ -35,8 +13,8 @@ export async function generateMetadata({
   const name = pokemon.name;
 
   return {
-    title: `${name} | Pokemon Explorer`,
-    description: `Explore various Pokemons, View its stats, abilities, moves, sprites, and game versions.`,
+    title: `${name} | Pokedex Notes`,
+    description: `View ${name}'s stats, abilities, moves, sprites, and game versions.`,
   };
 }
 
@@ -82,17 +60,17 @@ export default async function PokemonPage({
           &lt; Back to list
         </Link>
         <span className="text-[var(--muted)]">#{String(pokemon.id).padStart(4, "0")}</span>
-        <span className="hidden text-[var(--muted)] sm:inline">Pokemon dossier</span>
+        <span className="hidden text-[var(--muted)] sm:inline">Details</span>
       </nav>
 
-      <header className="border-b-2 border-[var(--foreground)] py-6 text-center sm:py-8">
+      <header className="border-b-2 border-[var(--foreground)] px-2 py-7 text-center sm:py-10">
         <p className="m-0 text-xs font-extrabold uppercase tracking-[0.25em] text-[var(--red)]">Pokemon</p>
         <h1 className="mt-2 text-4xl font-black capitalize tracking-[-0.03em] sm:text-6xl">{pokemon.name}</h1>
         <div className="mt-4 flex justify-center gap-2">
-          {pokemon.types.map((type, index) => (
+          {pokemon.types.map((type) => (
             <span
               key={type.type.name}
-              className={`border px-4 py-1 text-xs font-extrabold capitalize ${typeStyles[index % typeStyles.length]}`}
+              className="border border-[var(--foreground)] bg-[var(--panel-alt)] px-4 py-1 text-xs font-extrabold capitalize"
             >
               {type.type.name}
             </span>
@@ -102,21 +80,21 @@ export default async function PokemonPage({
 
       <main>
         <section className="grid border-b-2 border-[var(--foreground)] lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="flex min-h-[360px] items-center justify-center border-b border-[var(--border)] bg-[var(--panel-alt)] p-8 lg:border-b-0 lg:border-r">
+          <div className="flex min-h-[360px] items-center justify-center border-b border-[var(--border)] bg-[var(--panel-alt)] p-6 sm:p-10 lg:border-b-0 lg:border-r lg:p-8">
             {officialImage ? (
               <Image
                 src={officialImage}
                 alt={pokemon.name}
-                width={360}
-                height={360}
-                className="h-auto max-h-[360px] w-full max-w-[360px] object-contain drop-shadow-[0_14px_0_rgba(23,35,61,0.16)]"
+                width={280}
+                height={280}
+                className="h-auto max-h-[280px] w-full max-w-[280px] object-contain drop-shadow-[0_10px_0_rgba(23,35,61,0.14)]"
               />
             ) : null}
           </div>
 
-          <div className="p-6 sm:p-8">
+          <div className="px-6 py-8 sm:px-10 sm:py-9 lg:px-8 lg:py-12">
             <p className="m-0 max-w-lg text-sm leading-6 text-[var(--ink-soft)]">
-              A field guide entry for {pokemon.name}, catalogued by its core abilities, battle profile, and known forms.
+              Stats, abilities, moves, and sprites for {pokemon.name}.
             </p>
             <div className="mt-7 grid grid-cols-2 gap-x-8 gap-y-5 border-y border-[var(--border)] py-5 text-sm sm:grid-cols-3">
               {[
@@ -133,24 +111,19 @@ export default async function PokemonPage({
                 </div>
               ))}
             </div>
-            <div className="mt-6 flex items-center gap-3 text-xs font-extrabold uppercase tracking-wide text-[var(--muted)]">
-              <span className="h-2 w-2 rounded-full bg-[var(--red)]" />
-              Field notes / active entry
-            </div>
           </div>
         </section>
 
         <section className="grid border-b-2 border-[var(--foreground)] lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="border-b border-[var(--border)] p-6 sm:p-8 lg:border-b-0 lg:border-r">
+          <div className="border-b border-[var(--border)] p-6 sm:p-9 lg:border-b-0 lg:border-r lg:p-8">
             <div className="mb-5 flex items-end justify-between">
               <div>
-                <p className="m-0 text-[0.65rem] font-extrabold uppercase tracking-[0.2em] text-[var(--red)]">Battle profile</p>
-                <h2 className="mt-1 text-2xl font-black">Stats</h2>
+                <h2 className="text-2xl font-black">Stats</h2>
               </div>
               <span className="text-xs font-bold text-[var(--muted)]">Base values</span>
             </div>
             <div className="space-y-4">
-              {pokemon.stats.map((stat, index) => (
+              {pokemon.stats.map((stat) => (
                 <div key={stat.stat.name}>
                   <div className="mb-1 flex justify-between text-xs font-extrabold uppercase text-[var(--muted)]">
                     <span>{stat.stat.name}</span>
@@ -158,7 +131,7 @@ export default async function PokemonPage({
                   </div>
                   <div className="h-3 bg-[var(--panel-alt)]">
                     <div
-                      className={`h-full ${statStyles[index++]}`}
+                      className="h-full bg-[var(--red)]"
                       style={{ width: `${stat.base_stat}%` }}
                     />
                   </div>
@@ -167,9 +140,8 @@ export default async function PokemonPage({
             </div>
           </div>
 
-          <div className="p-6 sm:p-8">
-            <p className="m-0 text-[0.65rem] font-extrabold uppercase tracking-[0.2em] text-[var(--blue)]">Known traits</p>
-            <h2 className="mt-1 text-2xl font-black">Abilities</h2>
+          <div className="bg-[var(--panel-alt)] p-6 sm:p-8 lg:p-10">
+            <h2 className="text-2xl font-black">Abilities</h2>
             <div className="mt-6 divide-y divide-[var(--border)] border-y border-[var(--border)]">
               {pokemon.abilities.map((ability) => (
                 <div key={ability.ability.name} className="flex items-center justify-between gap-4 py-4">
@@ -183,25 +155,24 @@ export default async function PokemonPage({
           </div>
         </section>
 
-        <section className="border-b-2 border-[var(--foreground)] p-6 sm:p-8">
+        <section className="border-b-2 border-[var(--foreground)] bg-[var(--panel)] px-5 py-8 sm:px-8 sm:py-10">
           <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <div>
-              <p className="m-0 text-[0.65rem] font-extrabold uppercase tracking-[0.2em] text-[var(--red)]">Visual archive</p>
-              <h2 className="mt-1 text-2xl font-black">Forms & animations</h2>
+              <h2 className="text-2xl font-black">Sprites</h2>
             </div>
             <span className="text-xs font-bold text-[var(--muted)]">{gallery.filter((image) => image.src).length} available views</span>
           </div>
-          <div className="mt-6 grid grid-cols-3 gap-px bg-[var(--border)] sm:grid-cols-6">
+          <div className="mt-7 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
             {gallery.map((image) =>
               image.src ? (
-                <div key={image.label} className="group bg-[var(--panel)] p-3">
-                  <div className="flex h-24 items-center justify-center bg-[var(--panel-alt)] sm:h-28">
+                <div key={image.label} className="group rounded-md bg-[var(--panel-alt)] p-2.5 sm:p-3">
+                  <div className="flex h-24 items-center justify-center bg-[var(--panel)] sm:h-28">
                     <Image
                       src={image.src}
                       alt={`${pokemon.name} ${image.label}`}
-                      width={130}
-                      height={130}
-                      className="h-full w-full object-contain transition-transform duration-200 group-hover:scale-110"
+                      width={104}
+                      height={104}
+                      className="h-20 w-20 object-contain transition-transform duration-200 group-hover:scale-105 sm:h-24 sm:w-24"
                     />
                   </div>
                   <p className="mt-2 text-center text-[0.6rem] font-extrabold uppercase tracking-wide text-[var(--muted)]">{image.label}</p>
@@ -212,9 +183,8 @@ export default async function PokemonPage({
         </section>
 
         <section className="grid border-b-2 border-[var(--foreground)] lg:grid-cols-2">
-          <div className="border-b border-[var(--border)] p-6 sm:p-8 lg:border-b-0 lg:border-r">
-            <p className="m-0 text-[0.65rem] font-extrabold uppercase tracking-[0.2em] text-[var(--red)]">Release timeline</p>
-            <h2 className="mt-1 text-2xl font-black">Game versions</h2>
+          <div className="border-b border-[var(--border)] p-6 sm:p-8 lg:border-b-0 lg:border-r lg:p-10">
+            <h2 className="text-2xl font-black">Seen in</h2>
             {versions.length ? (
               <div className="mt-6 grid grid-cols-2 border-l-4 border-[var(--yellow)] sm:grid-cols-3">
                 {versions.map((version) => (
@@ -228,9 +198,8 @@ export default async function PokemonPage({
             )}
           </div>
 
-          <div className="p-6 sm:p-8">
-            <p className="m-0 text-[0.65rem] font-extrabold uppercase tracking-[0.2em] text-[var(--blue)]">Quick read</p>
-            <h2 className="mt-1 text-2xl font-black">At a glance</h2>
+          <div className="p-6 sm:p-8 lg:p-10">
+            <h2 className="text-2xl font-black">Counts</h2>
             <div className="mt-6 grid grid-cols-3 divide-x divide-[var(--border)] border-y border-[var(--border)] text-center">
               {[
                 [pokemon.moves.length, "Moves"],
@@ -249,14 +218,13 @@ export default async function PokemonPage({
         <section className="p-6 sm:p-8">
           <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <div>
-              <p className="m-0 text-[0.65rem] font-extrabold uppercase tracking-[0.2em] text-[var(--red)]">Learned repertoire</p>
-              <h2 className="mt-1 text-2xl font-black">Moves</h2>
+              <h2 className="text-2xl font-black">Moves</h2>
             </div>
             <span className="text-xs font-bold text-[var(--muted)]">Showing 12 of {pokemon.moves.length}</span>
           </div>
           <div className="mt-6 grid grid-cols-2 border-l-4 border-[var(--red)] sm:grid-cols-3 md:grid-cols-4">
-            {pokemon.moves.slice(0, 12).map((move, index) => (
-              <span key={move.move.name} className={`border-b border-r border-[var(--border)] px-3 py-3 text-xs font-extrabold capitalize ${moveStyles[index % moveStyles.length]}`}>
+            {pokemon.moves.slice(0, 12).map((move) => (
+              <span key={move.move.name} className="border-b border-r border-[var(--border)] bg-[var(--panel-alt)] px-3 py-3 text-xs font-extrabold capitalize">
                 {move.move.name}
               </span>
             ))}

@@ -1,15 +1,5 @@
-import Image from "next/image";
+import { LoadingScreen } from "@/components/loading-screen";
 
 export default function Loading() {
-    return (
-        <div className="flex min-h-screen items-center justify-center" role="status" aria-label="Loading Pokemon details">
-            <Image
-                src="/images/pokemon-icon.svg"
-                alt=""
-                width={48}
-                height={48}
-                className="animate-spin"
-            />
-        </div>
-    );
+    return <LoadingScreen label="Loading Pokemon details" />;
 }
