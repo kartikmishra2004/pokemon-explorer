@@ -25,10 +25,6 @@ const moveStyles = [
   "bg-[var(--border)]",
 ];
 
-function formatPokemonName(name: string) {
-  return name.replace(/-/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -36,12 +32,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const pokemon = await getPokemonDetails(id);
-  const name = formatPokemonName(pokemon.name);
-  const types = pokemon.types.map((type) => type.type.name).join(" and ");
+  const name = pokemon.name;
 
   return {
     title: `${name} | Pokemon Explorer`,
-    description: `Explore ${name}, a ${types}-type Pokemon. View its stats, abilities, moves, sprites, and game versions.`,
+    description: `Explore various Pokemons, View its stats, abilities, moves, sprites, and game versions.`,
   };
 }
 
@@ -163,8 +158,8 @@ export default async function PokemonPage({
                   </div>
                   <div className="h-3 bg-[var(--panel-alt)]">
                     <div
-                      className={`h-full ${statStyles[index % statStyles.length]}`}
-                      style={{ width: `${Math.min(stat.base_stat, 100)}%` }}
+                      className={`h-full ${statStyles[index++]}`}
+                      style={{ width: `${stat.base_stat}%` }}
                     />
                   </div>
                 </div>
