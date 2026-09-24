@@ -27,7 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full bg-[var(--background)] font-sans text-[var(--foreground)]">
         <div className="min-h-screen w-full">
           <Navbar />
-          <main className="min-h-[calc(100vh-4rem)] p-6">{children}</main>
+          <main className="min-h-[90vh] p-6">{children}</main>
         </div>
       </body>
     </html>

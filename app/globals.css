@@ -13,23 +13,8 @@
   --yellow: #f2c94c;
   --blue: #35a9d8;
   --ink-soft: #5f6b74;
+  --header-height: 4rem;
   color-scheme: light;
-}
-
-:root[data-theme="dark"] {
-    --background: #242a2f;
-    --foreground: #f3f5f6;
-    --panel: #30383e;
-    --panel-alt: #3b454c;
-    --border: rgba(243, 245, 246, 0.18);
-    --muted: #b8c2c8;
-    --nav-bg: #2c3338;
-    --link-bg-hover: rgba(243, 245, 246, 0.08);
-    --red: #ff8a5c;
-    --yellow: #f2c94c;
-    --blue: #61c5ed;
-    --ink-soft: #d3dade;
-    color-scheme: dark;
 }
 
 @theme inline {
