@@ -1,5 +1,5 @@
-# Pokedex Notes
-# Pokedex Notes
+# Pokemon Explorer
+# Pokemon Explorer
 
 A small Pokedex browser built with Next.js and the
 [PokeAPI](https://pokeapi.co/). The list keeps the first page on the server,

@@ -13,7 +13,7 @@ export async function generateMetadata({
   const name = pokemon.name;
 
   return {
-    title: `${name} | Pokedex Notes`,
+    title: `${name} | Pokemon Explorer`,
     description: `View ${name}'s stats, abilities, moves, sprites, and game versions.`,
   };
 }
