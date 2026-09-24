@@ -8,8 +8,6 @@
   --border: rgba(63, 72, 82, 0.16);
   --muted: #7a858e;
   --nav-bg: #ffffff;
-  --link: #3f4852;
-  --link-hover: #e85d32;
   --link-bg-hover: rgba(53, 169, 216, 0.1);
   --red: #ed6a38;
   --yellow: #f2c94c;
@@ -26,8 +24,6 @@
     --border: rgba(243, 245, 246, 0.18);
     --muted: #b8c2c8;
     --nav-bg: #2c3338;
-    --link: #f3f5f6;
-    --link-hover: #f2c94c;
     --link-bg-hover: rgba(243, 245, 246, 0.08);
     --red: #ff8a5c;
     --yellow: #f2c94c;

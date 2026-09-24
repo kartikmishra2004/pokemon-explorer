@@ -31,28 +31,6 @@ export interface Pokemon {
     held_items: HeldItem[];
 }
 
-export interface PokemonEncounter {
-    location_area: {
-        name: string;
-        url: string;
-    };
-    version_details: Array<{
-        version: {
-            name: string;
-            url: string;
-        };
-        encounter_details: Array<{
-            min_level: number;
-            max_level: number;
-            chance: number;
-            method: {
-                name: string;
-                url: string;
-            };
-        }>;
-    }>;
-}
-
 export interface PokemonSprites {
     front_default: string | null;
     back_default: string | null;
